@@ -1,9 +1,11 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux-immutable';
 
-import loading from './loading';
+import request from './request';
+import autocomplete from './autocomplete';
 
 const rootReducer = combineReducers({
-  loading,
+  request,
+  autocomplete,
 });
 
 export default rootReducer;

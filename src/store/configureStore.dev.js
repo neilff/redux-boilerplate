@@ -1,14 +1,21 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 
-import rootReducer from '../reducers';
 import createLogger from 'redux-logger';
-import thunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga';
+
+import rootReducer from '../reducers';
+import rootSagas from '../sagas';
+
 import DevTools from '../containers/DevTools';
 
-const logger = createLogger();
+const logger = createLogger({
+  collapsed: true,
+});
+
+const sagaMiddleware = createSagaMiddleware();
 
 const finalCreateStore = compose(
-  applyMiddleware(logger, thunk),
+  applyMiddleware(logger, sagaMiddleware),
   DevTools.instrument()
 )(createStore);
 
@@ -18,6 +25,8 @@ function configureStore(initialState) {
   if (module.hot) {
     module.hot.accept('../reducers', () => store.replaceReducer(require('../reducers')));
   }
+
+  sagaMiddleware.run(...rootSagas);
 
   return store;
 }
