@@ -21,7 +21,7 @@ function App(props) {
 
   return (
     <div>
-      <p>Typeahead Demo</p>
+      <p>Search Demo</p>
 
       <form onSubmit={ (e) => {
         e.preventDefault();

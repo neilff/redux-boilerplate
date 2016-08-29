@@ -1,17 +1,8 @@
 import createTypes from './utils/createTypes';
+import createAction from './utils/createAction';
 
-export const COMPANY_SEARCH = createTypes('COMPANY_SEARCH', ['TYPE', 'SUBMIT']);
+export const COMPANY_SEARCH = createTypes('COMPANY_SEARCH', ['TYPE', 'SUBMIT', 'CLEAR']);
 
-export function onCompanySearch(companyName) {
-  return {
-    type: COMPANY_SEARCH.SUBMIT,
-    payload: companyName,
-  };
-}
-
-export function onCompanyTypeahead(value) {
-  return {
-    type: COMPANY_SEARCH.TYPE,
-    payload: value,
-  };
-}
+export const clearCompanySearch = () => createAction(COMPANY_SEARCH.CLEAR);
+export const onCompanySearch = (companyName) => createAction(COMPANY_SEARCH.SUBMIT, companyName);
+export const onCompanyTypeahead = (value) => createAction(COMPANY_SEARCH.TYPE, value);

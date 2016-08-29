@@ -1,8 +1,11 @@
 import watchCompanySuggestion from './watchCompanySuggestion';
+import watchCompanyTypeahead from './watchCompanyTypeahead';
 
-const sagas = [
-  watchCompanySuggestion,
-];
+function* rootSaga() {
+  yield [
+    watchCompanySuggestion(),
+    watchCompanyTypeahead()
+  ]
+}
 
-
-export default sagas;
+export default rootSaga;

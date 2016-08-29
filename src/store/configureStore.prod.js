@@ -14,7 +14,7 @@ const finalCreateStore = compose(
 function configureStore(initialState) {
   const store = finalCreateStore(rootReducer, initialState);
 
-  sagaMiddleware.run(...rootSagas);
+  sagaMiddleware.run(rootSagas);
 
   return store;
 }

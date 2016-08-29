@@ -26,7 +26,7 @@ function configureStore(initialState) {
     module.hot.accept('../reducers', () => store.replaceReducer(require('../reducers')));
   }
 
-  sagaMiddleware.run(...rootSagas);
+  sagaMiddleware.run(rootSagas);
 
   return store;
 }
